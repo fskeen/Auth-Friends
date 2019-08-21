@@ -9,7 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') || false)
   return (
     <div className="App">
       <header className="App-header">
@@ -18,15 +18,12 @@ function App() {
         <Link to="/">Home</Link>
 
         <Route exact path="/" component={Home} />
-
         <Route path="/login" render = {props => (
           <Login
             {...props}
             setLoggedIn={setLoggedIn}
           />
         )} />
-
-
         <PrivateRoute path="/secretfriends" component={Friends} />
       </header>
     </div>
